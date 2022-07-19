@@ -8,20 +8,20 @@ from . models import Book
 
 def home(request):
     context = {}
-    return render(request, "APPLICATION1/index.html", context)
+    return render(request, "authentication/index.html", context)
 
 def borrow(request):
     new_books = Book.objects.order_by('title')[:]
     context = {'new_books': new_books}
-    return render(request, "APPLICATION1/borrow.html", context)
+    return render(request, "authentication/borrow.html", context)
 
 def borrowed(request):
     context = {}
-    return render(request, "APPLICATION1/borrowed.html", context)
+    return render(request, "authentication/borrowed.html", context)
 
 def checkout(request):
     context = {}
-    return render(request, "APPLICATION1/checkout.html", context)
+    return render(request, "authentication/checkout.html", context)
 
 def signup(request):
 
@@ -63,7 +63,7 @@ def signup(request):
 
 
 
-    return render(request, "APPLICATION1/signup.html")
+    return render(request, "authentication/signup.html")
 
 def signin(request):
 
@@ -76,12 +76,12 @@ def signin(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
-            return render(request, "APPLICATION1/loginview.html", {'fname':fname})
+            return render(request, "authentication/loginview.html", {'fname':fname})
         else:
             messages.error(request, "Invalid Credentials!")
             return redirect('home')
 
-    return render(request, "APPLICATION1/signin.html")
+    return render(request, "authentication/signin.html")
 
 def signout(request):
     logout(request)
@@ -89,9 +89,9 @@ def signout(request):
     return redirect('home')
 
 def About(request):
-    return render(request, "APPLICATION1/about.html")
+    return render(request, "authentication/about.html")
 
 def loginview(request):
-    return render(request, "APPLICATION1/loginview.html")
+    return render(request, "authentication/loginview.html")
 
     
