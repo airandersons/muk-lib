@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'APPLICATION1/css/main.css' %}">
+
+    <meta name"viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'APPLICATION1:loginview'%}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'APPLICATION1:borrow'%}">Books</a>
+          </li><li class="nav-item">
+            <a class="nav-link" href="{% url 'APPLICATION1:checkout'%}">checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'APPLICATION1:About'%}">ABOUT US</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <a href="{% url 'APPLICATION1:borrowed'%}">
+          <img id="books-icon" src="/static/images/books.png">
+      </a>
+      <p id="books-total">0</p>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container">
+        {% for Book in new_books %}
+            <div class="row">
+                <div class="col-md-3 product-men">
+                    <img width="250" height="320" src="{{Book.bookcover.url}}">
+                    <div class="box-element book-title">
+                        <h6><strong>{{ Book.title }}</strong></h6>
+                        <p>{{ Book.author }}</p>
+                        <hr>
+                        <button class="btn btn-outline-secondary add-btn">Add to Borrow</button>
+                        <a class="btn btn-outline-success" href="#">View</a>
+                        <h4 style="display: inline-block;float: right">0</h4>
+                    
+                    </div>
+                
+                </div>
+            {% endfor %}
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+</body>
+</html>

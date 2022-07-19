@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+  <div class="position-absolute top-0 start-50 translate-middle"><h3>Sign In</h3></div>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'APPLICATION1:signup'%}">signup</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'APPLICATION1:signin'%}">signin</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+<br>
+<h3>Sign In</h3>
+<div class="position-absolute top-50 start-50 translate-middle">
+  <div class="card border-primary mb-3 text-center"  style="max-width: 24rem; ">
+    <div class="card-header">SignIn</div>
+    <div class="card-body">
+      <h5 class="card-title">PLEASE SIGN IN HERE</h5>
+      <p class="card-text">
+        <form action="{% url 'APPLICATION1:signin'%}" method="post">
+          {% csrf_token %}
+              <label for="">Username</label>
+              <input type="text" id="username" name="username" placeholder="Enter Your Username"Required>
+              <br>
+              <br>
+      
+              <label for="">Password</label>
+              <input type="password" id="pass1" name="pass1" placeholder="Enter Your Password"Required>
+              <br>
+              <br>
+      
+      
+              <button type="submit" type="button" class="btn btn-primary">Sign In</button>
+          </form>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</body>
+</html>

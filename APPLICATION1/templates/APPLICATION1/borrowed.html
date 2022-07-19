@@ -1,0 +1,47 @@
+{% extends 'APPLICATION1/main.html'%}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="{% url 'APPLICATION1:borrow' %}">&#x2190; Continue Borrowing</a>
+
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5>Books: <strong>4</strong></h5></th>
+                    <th><h5>Plenty: <strong>5,000UGX</strong></h5></th>
+                    <th>
+                        <a style="float:right; margin:5px" class="btn btn-success" href="{% url 'APPLICATION1:checkout' %}">Checkout</a>
+                    </th>
+                </tr>
+
+            </table>
+
+        </div>
+        <br>
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:2"></div>
+                <div style="flex:2"><strong>Book</strong></div>
+                <div style="flex:1"><strong>Pickup Date</strong></div>
+                <div style="flex:1"><strong>Return Date</strong></div>
+                <div style="flex:1"><strong>Plenty</strong></div>
+            </div>
+
+            <div class="cart-row">
+                <div style="flex:2"><img class="row-image" scr="{% static 'APPLICATION1/images/placeholder.png' %}"></div>
+                <div style="flex:2">book 1</div>
+                <div style="flex:1">03/07/2022</div>
+                <div style="flex:1">08/07/2022</div>
+                <div style="flex:1">5000UGX</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    
+{% endblock content %}
