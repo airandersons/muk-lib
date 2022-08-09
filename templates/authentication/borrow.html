@@ -25,10 +25,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/loginview">Home</a>
+            <a class="nav-link active" aria-current="page" href="/loginview/{{student_id}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/borrow">Books</a>
+            <form action="/booklister" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="student_id" value="{{student_id}}" />
+              <input type="submit" class="vav-link" value="Books" />
+            </form>
           </li><li class="nav-item">
             <a class="nav-link" href="/checkout">checkout</a>
           </li>
@@ -36,11 +40,11 @@
             <a class="nav-link" href="/about">ABOUT US</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" role="search" method="post" action="/libsearch/">
+          {% csrf_token %}
+          <input class="form-control me-2" name="search" type="search" placeholder="Search the Lib" aria-label="Search">
+          <input class="btn btn-outline-success" value="Search" type="submit"/>
         </form>
-        <a href="{% url 'borrowed'%}">
           <img id="books-icon" src="/static/images/books.png">
       </a>
       <p id="books-total">0</p>
@@ -56,11 +60,16 @@
             <img width="250" height="320" src="{{Book.bookcover.url}}">
             <div class="box-element book-title">
                 <h6><strong>{{ Book.title }}</strong></h6>
-                <p>{{ Book.author }}</p>
+                <p>{{ Book.author }}</p> <span>{{ Book.category }}</span>
                 <hr>
+                <form action="/bookrequest/" id="questform" method="post">
+                  {%csrf_token%}
+                  <input name="book" id="book" type="hidden" value="{{Book.id}}">
+                  <input name="student_id" type="hidden" value="{{student_id}}">
+                  <input type="submit" value="Request for borrow">
+                </form>
                 <button class="btn btn-outline-secondary add-btn">Add to Borrow</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 style="display: inline-block;float: right">0</h4>
+                <a class="btn btn-outline-success" href="#">{{ Book.status }}</a>
 
             </div>
 

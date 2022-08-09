@@ -2,5 +2,34 @@
 {% load static %}
 {% block content %}
 
+{% if already_booked != "" %}
+  <h2>{{already_booked}}</h2>
+{% elif confirm_key != "" %}
+  <h2> {{confirm_key}} </h2>
+{% else %}
+<div class="container">
+<div class="row">
+    <div class="col-md-3 product-men">
+        <img width="250" height="320" src="{{ book.bookcover.url}}">
+        <div class="box-element book-title">
+            <h6><strong>{{ book.title }}</strong></h6>
+            <p>{{ book.author }}</p> <span>{{ book.category }}</span>
+            <hr>
+            <form action="/update/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="borrow" value="{{book.id}}"/>
+                <input type="hidden" name="borrower" value="{{student_id}}"/>
+                <input type="submit" name="submit" value="Confirm Borrow Request"/>
+            </form>
+
+        </div>
+
+  
+    </div>
+
+</div>
+</div>
+{% endif %}
+
 
 {% endblock content %}

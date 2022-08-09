@@ -1,0 +1,37 @@
+{% extends 'authentication/main.html'%}
+{% load static %}
+{% block content %}
+
+<div class="container">
+ {% if search_results == empty_search %}
+    <h2>{{search_results}}</h2>
+ {% else %}
+    {% for Book in search_results %}
+<div class="row">
+    <div class="col-md-3 product-men">
+        <img width="250" height="320" src="{{Book.bookcover.url}}">
+        <div class="box-element book-title">
+            <h6><strong>{{ Book.title }}</strong></h6>
+            <p>{{ Book.author }}</p> <span>{{ Book.category }}</span>
+            <hr>
+            <form action="/bookrequest/" id="questform" method="post">
+              {%csrf_token%}
+              <input name="book" id="book" type="hidden" value="{{Book.id}}">
+              <input name="student_id" type="hidden" value="{{student_id}}">
+              <input type="submit" value="Request for borrow">
+            </form>
+            <button class="btn btn-outline-secondary add-btn">Add to Borrow</button>
+            <a class="btn btn-outline-success" href="#">{{ Book.status }}</a>
+
+        </div>
+
+  
+    </div>
+
+</div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+{% endblock content %}
