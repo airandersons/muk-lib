@@ -33,9 +33,6 @@
               <input type="hidden" name="student_id" value="{{student_id}}" />
               <input type="submit" class="vav-link" value="Books" />
             </form>
-          </li><li class="nav-item">
-            <a class="nav-link" href="/checkout">checkout</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="/about">ABOUT US</a>
           </li>
@@ -45,9 +42,13 @@
           <input class="form-control me-2" name="search" type="search" placeholder="Search the Lib" aria-label="Search">
           <input class="btn btn-outline-success" value="Search" type="submit"/>
         </form>
-          <img id="books-icon" src="/static/images/books.png">
+          <a href="#"><img id="books-icon" src="/static/images/books.png"></a>
       </a>
+      {% if in_cart != 0 %}
+      <p id="books-total">1</p>
+      {% else %}
       <p id="books-total">0</p>
+      {% endif %}
       </div>
     </div>
   </nav>
@@ -66,10 +67,9 @@
                   {%csrf_token%}
                   <input name="book" id="book" type="hidden" value="{{Book.id}}">
                   <input name="student_id" type="hidden" value="{{student_id}}">
-                  <input type="submit" value="Request for borrow">
+                  <a class="btn btn-outline-success" href="#">{{ Book.status }}</a>
+                  <input type="submit" value="Request Book">
                 </form>
-                <button class="btn btn-outline-secondary add-btn">Add to Borrow</button>
-                <a class="btn btn-outline-success" href="#">{{ Book.status }}</a>
 
             </div>
 
@@ -78,6 +78,7 @@
 
     </div>
     {% endfor %}
+
     </div>
 
 

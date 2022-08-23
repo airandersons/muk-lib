@@ -4,8 +4,6 @@
 
 {% if already_booked != "" %}
   <h2>{{already_booked}}</h2>
-{% elif confirm_key != "" %}
-  <h2> {{confirm_key}} </h2>
 {% else %}
 <div class="container">
 <div class="row">
@@ -15,21 +13,33 @@
             <h6><strong>{{ book.title }}</strong></h6>
             <p>{{ book.author }}</p> <span>{{ book.category }}</span>
             <hr>
-            <form action="/update/" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="borrow" value="{{book.id}}"/>
-                <input type="hidden" name="borrower" value="{{student_id}}"/>
-                <input type="submit" name="submit" value="Confirm Borrow Request"/>
-            </form>
 
         </div>
 
   
     </div>
 
-</div>
-</div>
+    <div class="col-md-7">
+        <p><strong>Title: </strong><span>{{ book.title }}</span></p>
+        <p><strong>Author: </strong><span>{{ book.author }}</span></p>
+        <p><strong>Category: </strong><span>{{ book.category }}</span></p>
+        <p><strong>Description: </strong><span>{{ book.description }}</span></p>
+        <p><strong>Status: </strong><span>{{ book.status }}</span></p>
+        <p><strong>Date borrowed: </strong><span>{{ today }}</span></p>
+        <p><strong>Return date: </strong><span>{{ return_date }}</span></p>
+        <p><strong>Fine if returned 5 days later than return date: </strong><span>5,000 shillings</span></p>
+        <p><strong>Fine if returned 10 days later than return date: </strong><span>15,000 shillings</span></p>
 {% endif %}
 
+{% if borrow_once != "" %}
+<h4 class="text-danger"> {{borrow_once}} </h4>
+{% else %}
+<h4 class="text-success"> Success! Your request has been submitted. Visit the library and pick your book. </h4>
+{% endif %}
+    </div>
+    </div>
+
+</div>
+</div>
 
 {% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'authentication/main.html'%}
+{% load static %}
+{% block content %}
+
+{% if already_booked != "" %}
+  <h2>{{already_booked}}</h2>
+{% else %}
+<div class="container">
+<div class="row">
+    <div class="col-md-3 product-men">
+        <img width="250" height="320" src="{{ book.bookcover.url}}">
+        <div class="box-element book-title">
+            <h6><strong>{{ book.title }}</strong></h6>
+            <p>{{ book.author }}</p> <span>{{ book.category }}</span>
+            <hr>
+            <form action="/confirm/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="borrow" value="{{book.id}}"/>
+                <input type="hidden" name="borrower" value="{{student_id}}"/>
+                <input type="submit" name="submit" value="Request Book"/>
+            </form>
+
+        </div>
+
+  
+    </div>
+
+    <div class="col-md-7">
+        <p><strong>Title: </strong><span>{{ book.title }}</span></p>
+        <p><strong>Author: </strong><span>{{ book.author }}</span></p>
+        <p><strong>Category: </strong><span>{{ book.category }}</span></p>
+        <p><strong>Description: </strong><span>{{ book.description }}</span></p>
+        <p><strong>Status: </strong><span>{{ book.status }}</span></p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-8">
+        <p><strong>Title: </strong><span>{{ book.title }}</span></p>
+        <p><strong>Author: </strong><span>{{ book.author }}</span></p>
+        <p><strong>Date borrowed: </strong><span>{{ today }}</span></p>
+        <p><strong>Return date: </strong><span>{{ return_date }}</span></p>
+        <p><strong>Fine if returned 5 days later than return date: </strong><span>5,000 shillings</span></p>
+        <p><strong>Fine if returned 10 days later than return date: </strong><span>15,000 shillings</span></p>
+    </div>
+  </div>
+
+</div>
+</div>
+{% endif %}
+
+{% if borrow_once != "" %}
+<h4> {{borrow_once}} </h4>
+{% endif %}
+
+{% endblock content %}

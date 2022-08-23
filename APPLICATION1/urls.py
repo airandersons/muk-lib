@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+app_name = 'APPLICATION1'
 urlpatterns = [
     path('', views.home, name="home"),
     path('loginview/<int:logged_student_id>/', views.loginview, name="loginview"),
@@ -15,5 +16,4 @@ urlpatterns = [
     path('bookrequest/', views.bookrequest, name='bookrequest'),
     path('booklister', views.booklister, name='booklister'),
     path('libsearch/', views.libsearch, name='libsearch'),
-    path('update/', views.update, name='update'),
 ]
